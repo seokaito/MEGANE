@@ -1,16 +1,29 @@
-# main.tsx の学習ノート
+# src/main.tsxの学習ノート
 
-## このファイルの役割
-- React アプリのエントリーポイント
-- ReactDOM.createRoot で `App.tsx` を描画する
+## 📌 このファイルの役割
 
-## 読んでわかったこと
-- ここからアプリ全体が起動する
-- Vite がバンドルした JS を index.html に流し込んでいる
+このファイルは、Reactアプリケーションのエントリーポイント（起動ファイル）です。アプリ全体をブラウザ上にレンダリングするための初期設定を行います。主に、Reactのルート要素を作成し、`App`コンポーネントをDOMの`root`要素にマウント（描画）します。
 
-## 疑問点 / 今後調べたいこと
-- ReactDOM.createRoot と ReactDOM.render の違い
-- StrictMode が何をしているのか
+## 📖 読んでわかったこと
 
-## 参考リンク
-- [React Docs: ReactDOM.createRoot](https://react.dev/reference/react-dom/client/createRoot)
+- `import { createRoot } from "react-dom/client";`
+  - React 18以降の新しいレンダリングAPIである`createRoot`をインポートしています。これにより従来の`ReactDOM.render`よりもパフォーマンスや柔軟性が向上しています。
+
+- `import App from "./App.tsx";`
+  - アプリ本体となるコンポーネント`App`をインポートしています。実際のUIやロジックはこの`App`コンポーネントで実装されています。
+
+- `import "./index.css";`
+  - 全体のスタイルを適用するためのCSSファイルをインポートしています。
+
+- `createRoot(document.getElementById("root")!).render(<App />);`
+  - HTMLファイル内の`id="root"`となっている要素を取得し、そこに`App`コンポーネントをレンダリングしています。
+  - `!`はTypeScriptの「この値はnullではない」と明示するノン・ヌラブルアサーションです。
+
+### 主要な関数・コンポーネント
+
+- `createRoot`
+  - Reactの新しいレンダリングルートを作成する関数。`root.render(...)`の形でコンポーネントを描画できる。
+- `App`
+  - アプリケーションのメインコンポーネント。ここでは詳細は不明ですが、アプリ全体を統括する役割。
+- `index.css`
+  - アプリ全体の基本スタイルを定義するファイル。
